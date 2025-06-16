@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calzado Hombre - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Ropa_css.css">
+    <link rel="stylesheet" href="calzadoh.css">
+</head>
+<body>
+    <!-- Componente Sidebar -->
+    <aside class="sidebar">
+        <h1 class="sidebar__logo">EVE <span class="sidebar__logo--accent">BOUTIQUE</span></h1>
+        
+        <nav class="sidebar__nav">
+            <a href="#" class="sidebar__nav-link"><i class="fas fa-home sidebar__nav-icon"></i> INICIO</a>
+            <a href="#" class="sidebar__nav-link sidebar__nav-link--active"><i class="fas fa-shoe-prints sidebar__nav-icon"></i> CALZADO</a>
+            <a href="#" class="sidebar__nav-link"><i class="fas fa-tshirt sidebar__nav-icon"></i> ROPA</a>
+            <a href="#" class="sidebar__nav-link"><i class="fas fa-question-circle sidebar__nav-icon"></i> AYUDA</a>
+        </nav>
+    </aside>
+    
+    <!-- Componente Main Content -->
+    <main class="main-content">
+        <!-- Componente Top Bar -->
+        <header class="top-bar">
+            <div class="search-bar">
+                <i class="fas fa-search search-bar__icon"></i>
+                <input type="text" class="search-bar__input" placeholder="Buscar calzado...">
+            </div>
+            
+            <div class="user-info">
+                <img src="https://via.placeholder.com/40" alt="Usuario" class="user-info__avatar">
+                <span class="user-info__name">Nombre usuario</span>
+            </div>
+        </header>
+        
+        <!-- Componente Filters -->
+        <section class="filters">
+            <h2 class="filters__title">Calzado para Hombre</h2>
+            <div class="filters__options">
+                <button class="filter-btn filter-btn--active">Todos</button>
+                <button class="filter-btn">Formales</button>
+                <button class="filter-btn">Deportivos</button>
+                <button class="filter-btn">Botas</button>
+                <button class="filter-btn">Sneakers</button>
+                <button class="filter-btn">Sandalias</button>
+            </div>
+        </section>
+        
+        <!-- Componente Products Container -->
+        <section class="products-container">
+            <div class="products-search">
+                <input type="text" class="products-search__input" placeholder="Buscar modelos...">
+            </div>
+            
+            <!-- Componente Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+    </main>
+
+    <script src="CalzadoH.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Pedido - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="principal.css">
+    <link rel="stylesheet" href="principal2.css">
+    <link rel="stylesheet" href="deta.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>EVE <span>BOUTIQUE</span></h1>
+                <p>Panel de Administración</p>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Principal.html" class="nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="Agregar.html" class="nav-item"><i class="fas fa-plus-circle"></i> Agregar Producto</a></li>
+                    <li><a href="pedidos.html" class="nav-item active"><i class="fas fa-clipboard-list"></i> Pedidos</a></li>
+                    <li><a href="detallesPedido.html" class="nav-item"><i class="fas fa-warehouse"></i> Detalles</a></li>
+                    
+                    <li><a href="configuracion.html" class="nav-item"><i class="fas fa-cog"></i> Configuración</a></li>
+                </ul>
+            </nav>
+            
+            <div class="weather-info">
+                <div class="temperature">27°C</div>
+                <div class="weather-condition">Mayormente nublado</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-content">
+                    <h2><i class="fas fa-file-invoice"></i> Detalles del Pedido</h2>
+                    <a href="pedidos.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Pedidos</a>
+                </div>
+            </header>
+
+            <!-- Información del Pedido -->
+            <section class="order-info-section">
+                <div class="order-header">
+                    <h3>Pedido #<span id="order-id">--</span></h3>
+                    <div class="order-status">
+                        Estado: <span id="order-status" class="status-badge">--</span>
+                    </div>
+                </div>
+                
+                <div class="order-details-grid">
+                    <div class="detail-card">
+                        <h4><i class="fas fa-user"></i> Cliente</h4>
+                        <p id="customer-name">--</p>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h4><i class="fas fa-calendar-alt"></i> Fecha</h4>
+                        <p id="order-date">--</p>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h4><i class="fas fa-truck"></i> Envío</h4>
+                        <p id="shipping-method">--</p>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h4><i class="fas fa-money-bill-wave"></i> Total</h4>
+                        <p id="order-total" class="total-amount">--</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Productos del Pedido -->
+            <section class="order-products">
+                <h3><i class="fas fa-box-open"></i> Productos</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio Unitario</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Los productos se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Resumen del Pedido -->
+            <section class="order-summary">
+                <div class="summary-card">
+                    <h3><i class="fas fa-receipt"></i> Resumen del Pedido</h3>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Envío:</span>
+                        <span id="shipping-cost">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Descuento:</span>
+                        <span id="discount">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="order-total-summary">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="order-actions">
+                    <button class="btn print-btn"><i class="fas fa-print"></i> Imprimir</button>
+                    <button class="btn update-btn"><i class="fas fa-sync-alt"></i> Actualizar Estado</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Obtener ID del pedido de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('id');
+
+            if (!orderId) {
+                alert('No se especificó un ID de pedido');
+                window.location.href = 'pedidos.html';
+                return;
+            }
+
+            // Cargar detalles del pedido
+            function cargarDetallesPedido() {
+                $.ajax({
+                    url: `/pedidos/${orderId}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        mostrarDetallesPedido(data.pedido, data.detalles);
+                    },
+                    error: function(error) {
+                        console.error('Error al cargar detalles del pedido:', error);
+                        alert('Error al cargar los detalles del pedido');
+                    }
+                });
+            }
+
+            // Mostrar los detalles del pedido
+            function mostrarDetallesPedido(pedido, detalles) {
+                // Información general
+                $('#order-id').text(pedido.IdPedido);
+                $('#customer-name').text(pedido.Cliente);
+                $('#order-date').text(new Date(pedido.FechaPedido).toLocaleDateString());
+                $('#order-total').text('$' + pedido.Total.toFixed(2));
+                
+                // Estado
+                const estado = pedido.Estado.toLowerCase().replace(' ', '-');
+                $('#order-status').text(pedido.Estado).addClass(estado);
+                
+                // Productos
+                const tbody = $('#products-table-body');
+                tbody.empty();
+                
+                let subtotal = 0;
+                
+                detalles.forEach(detalle => {
+                    const productSubtotal = detalle.Cantidad * detalle.Precio;
+                    subtotal += productSubtotal;
+                    
+                    const row = `
+                        <tr>
+                            <td>${detalle.Producto}</td>
+                            <td>$${detalle.Precio.toFixed(2)}</td>
+                            <td>${detalle.Cantidad}</td>
+                            <td>$${productSubtotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                });
+                
+                // Resumen
+                $('#subtotal').text('$' + subtotal.toFixed(2));
+                $('#order-total-summary').text('$' + pedido.Total.toFixed(2));
+                
+                // Calcular envío y descuento (simplificado)
+                const shipping = 5.00; // Ejemplo fijo
+                const discount = Math.max(0, subtotal - pedido.Total + shipping);
+                
+                $('#shipping-cost').text('$' + shipping.toFixed(2));
+                $('#discount').text('$' + discount.toFixed(2));
+            }
+
+            // Inicializar
+            cargarDetallesPedido();
+
+            // Botón de imprimir
+            $('.print-btn').click(function() {
+                window.print();
+            });
+
+            // Botón de actualizar estado
+            $('.update-btn').click(function() {
+                const nuevoEstado = prompt('Ingrese el nuevo estado del pedido:');
+                if (nuevoEstado) {
+                    // Aquí implementarías la actualización del estado
+                    alert(`Estado actualizado a: ${nuevoEstado}`);
+                    $('#order-status').text(nuevoEstado).removeClass().addClass('status-badge ' + nuevoEstado.toLowerCase());
+                }
+            });
+        });
+    </script>
+</body>
+</html>

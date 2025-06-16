@@ -1,0 +1,57 @@
+/* Estilos base - Se mantienen iguales */
+/* ... (usar los mismos estilos base del anterior) ... */
+
+/* Ajustes específicos para skin care */
+.filters__title {
+    color: #27ae60; /* Verde como color principal */
+}
+
+.filter-btn--active,
+.filter-btn:hover,
+.product-card__btn {
+    background-color: #27ae60; /* Verde para skin care */
+}
+
+.filter-btn--active:hover,
+.product-card__btn:hover {
+    background-color: #219653; /* Verde más oscuro */
+}
+
+.product-card__price {
+    color: #27ae60;
+}
+
+/* Ajuste específico para imágenes de productos */
+.product-card__image {
+    height: 180px;
+    background-color: #e8f5e9; /* Fondo verde claro */
+    padding: 20px;
+    position: relative;
+}
+
+/* Etiqueta de tipo de piel */
+.product-card__skin-type {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Ingredientes clave */
+.product-card__ingredients {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+/* Beneficios */
+.product-card__benefits {
+    font-size: 12px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}

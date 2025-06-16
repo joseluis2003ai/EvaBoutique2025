@@ -1,0 +1,47 @@
+
+.filters__title {
+    color: #3498db; /* Azul como color principal */
+}
+
+.filter-btn--active,
+.filter-btn:hover,
+.product-card__btn {
+    background-color: #3498db; /* Azul para calzado */
+}
+
+.filter-btn--active:hover,
+.product-card__btn:hover {
+    background-color: #2980b9; /* Azul más oscuro */
+}
+
+.product-card__price {
+    color: #3498db;
+}
+
+/* Ajuste específico para imágenes de calzado */
+.product-card__image {
+    height: 220px;
+    background-color: #f0f8ff; /* Fondo azul claro */
+    padding: 15px;
+}
+
+/* Etiqueta de talla */
+.product-card__size {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Estilo para tipo de calzado */
+.product-card__type {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,249 @@
+/* Order Info Section */
+.order-info-section {
+    background-color: white;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-header h3 {
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.order-status {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.order-status .status-badge {
+    margin-left: 8px;
+}
+
+.order-details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.detail-card {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.detail-card h4 {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-card h4 i {
+    margin-right: 8px;
+}
+
+.detail-card p {
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.total-amount {
+    font-size: 18px;
+    font-weight: 700;
+    color: #27ae60;
+}
+
+/* Order Products */
+.order-products {
+    background-color: white;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.order-products h3 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.order-products h3 i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+/* Order Summary */
+.order-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.summary-card {
+    background-color: white;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card h3 {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.summary-card h3 i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-row.total {
+    font-weight: 700;
+    color: #2c3e50;
+    padding-top: 12px;
+    margin-top: 5px;
+}
+
+/* Order Actions */
+.order-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.print-btn {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.print-btn:hover {
+    background-color: #7f8c8d;
+}
+
+.update-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filters select, .filters input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .order-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .order-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        overflow: hidden;
+    }
+    
+    .logo h1, .logo p, .nav-item span, .weather-condition {
+        display: none;
+    }
+    
+    .nav-item {
+        justify-content: center;
+    }
+    
+    .nav-item i {
+        margin-right: 0;
+        font-size: 18px;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+    }
+    
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-card, table {
+    animation: fadeIn 0.5s ease-out;
+}

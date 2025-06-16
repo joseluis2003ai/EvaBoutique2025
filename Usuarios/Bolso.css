@@ -1,0 +1,36 @@
+/* Estilos base - Se mantienen iguales */
+/* ... (usar los mismos estilos base del anterior) ... */
+
+/* Ajustes específicos para bolsos */
+.filters__title {
+    color: #e67e22; /* Naranja como color principal */
+}
+
+.filter-btn--active,
+.filter-btn:hover,
+.product-card__btn {
+    background-color: #e67e22; /* Naranja para bolsos */
+}
+
+.filter-btn--active:hover,
+.product-card__btn:hover {
+    background-color: #d35400; /* Naranja más oscuro */
+}
+
+.product-card__price {
+    color: #e67e22;
+}
+
+/* Ajuste específico para imágenes de bolsos */
+.product-card__image {
+    height: 200px;
+    background-color: #fff9f2; /* Fondo naranja claro */
+    padding: 15px;
+}
+
+/* Añadir etiqueta de material */
+.product-card__material {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+}

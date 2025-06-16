@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lociones Hombre - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Ropa_css.css">
+    <link rel="stylesheet" href="locionesh.css">
+</head>
+<body>
+    <!-- Componente Sidebar -->
+    <aside class="sidebar">
+        <h1 class="sidebar__logo">EVE <span class="sidebar__logo--accent">BOUTIQUE</span></h1>
+        
+        <nav class="sidebar__nav">
+            <a href="#" class="sidebar__nav-link"><i class="fas fa-home sidebar__nav-icon"></i> INICIO</a>
+            <a href="#" class="sidebar__nav-link sidebar__nav-link--active"><i class="fas fa-spa sidebar__nav-icon"></i> LOCIONES</a>
+            <a href="#" class="sidebar__nav-link"><i class="fas fa-list sidebar__nav-icon"></i> CATEGORÍAS</a>
+            <a href="#" class="sidebar__nav-link"><i class="fas fa-question-circle sidebar__nav-icon"></i> AYUDA</a>
+        </nav>
+    </aside>
+    
+    <!-- Componente Main Content -->
+    <main class="main-content">
+        <!-- Componente Top Bar -->
+        <header class="top-bar">
+            <div class="search-bar">
+                <i class="fas fa-search search-bar__icon"></i>
+                <input type="text" class="search-bar__input" placeholder="Buscar lociones para hombre...">
+            </div>
+            
+            <div class="user-info">
+                <img src="https://via.placeholder.com/40" alt="Usuario" class="user-info__avatar">
+                <span class="user-info__name">Nombre usuario</span>
+            </div>
+        </header>
+        
+        <!-- Componente Filters -->
+        <section class="filters">
+            <h2 class="filters__title">Lociones para Hombre</h2>
+            <div class="filters__options">
+                <button class="filter-btn filter-btn--active">Todos</button>
+                <button class="filter-btn">Amaderadas</button>
+                <button class="filter-btn">Cítricas</button>
+                <button class="filter-btn">Aromáticas</button>
+                <button class="filter-btn">Ambarinas</button>
+            </div>
+        </section>
+        
+        <!-- Componente Products Container -->
+        <section class="products-container">
+            <div class="products-search">
+                <input type="text" class="products-search__input" placeholder="Buscar por fragancia...">
+            </div>
+            
+            <!-- Componente Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+    </main>
+
+    <script src="locionesH.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="principal.css">
+    <link rel="stylesheet" href="principal2.css">
+     <link rel="stylesheet" href="Pedi.css">
+
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>EVE <span>BOUTIQUE</span></h1>
+                <p>Panel de Administración</p>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Principal.html" class="nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="Agregar.html" class="nav-item"><i class="fas fa-plus-circle"></i> Agregar Producto</a></li>
+                    <li><a href="pedidos.html" class="nav-item active"><i class="fas fa-clipboard-list"></i> Pedidos</a></li>
+                    <li><a href="detallesPedido.html" class="nav-item"><i class="fas fa-warehouse"></i> Detalles</a></li>
+                   
+                    <li><a href="configuracion.html" class="nav-item"><i class="fas fa-cog"></i> Configuración</a></li>
+                </ul>
+            </nav>
+            
+            <div class="weather-info">
+                <div class="temperature">27°C</div>
+                <div class="weather-condition">Mayormente nublado</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h2><i class="fas fa-clipboard-list"></i> Gestión de Pedidos</h2>
+            </header>
+
+            <!-- Estadísticas Rápidas -->
+            <section class="quick-stats">
+                <div class="stat-card">
+                    <h3>Pedidos Hoy</h3>
+                    <div class="stat-value" id="pedidos-hoy">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Pedidos Pendientes</h3>
+                    <div class="stat-value" id="pedidos-pendientes">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Total Ventas</h3>
+                    <div class="stat-value" id="total-ventas">$0</div>
+                </div>
+            </section>
+
+            <!-- Lista de Pedidos -->
+            <section class="recent-orders">
+                <div class="section-header">
+                    <h3><i class="fas fa-list"></i> Todos los Pedidos</h3>
+                    <div class="filters">
+                        <select id="filter-status">
+                            <option value="all">Todos los estados</option>
+                            <option value="pendiente">Pendientes</option>
+                            <option value="procesando">En proceso</option>
+                            <option value="completado">Completados</option>
+                            <option value="cancelado">Cancelados</option>
+                        </select>
+                        <input type="date" id="filter-date">
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pedidos-table-body">
+                        <!-- Los pedidos se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination">
+                    <button id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                    <span id="page-info">Página 1 de 1</span>
+                    <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Cargar pedidos desde el backend
+            function cargarPedidos() {
+                $.ajax({
+                    url: '/pedidos',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        actualizarEstadisticas(data);
+                        renderizarPedidos(data.pedidos);
+                    },
+                    error: function(error) {
+                        console.error('Error al cargar pedidos:', error);
+                    }
+                });
+            }
+
+            // Actualizar las estadísticas
+            function actualizarEstadisticas(data) {
+                $('#pedidos-hoy').text(data.pedidosHoy);
+                $('#pedidos-pendientes').text(data.pedidosPendientes);
+                $('#total-ventas').text('$' + data.totalVentas.toFixed(2));
+            }
+
+            // Renderizar la tabla de pedidos
+            function renderizarPedidos(pedidos) {
+                const tbody = $('#pedidos-table-body');
+                tbody.empty();
+
+                if (pedidos.length === 0) {
+                    tbody.append('<tr><td colspan="6">No hay pedidos registrados</td></tr>');
+                    return;
+                }
+
+                pedidos.forEach(pedido => {
+                    const fecha = new Date(pedido.FechaPedido).toLocaleDateString();
+                    const estadoClass = pedido.Estado.toLowerCase().replace(' ', '-');
+                    
+                    const row = `
+                        <tr>
+                            <td>${pedido.IdPedido}</td>
+                            <td>${pedido.Cliente}</td>
+                            <td>${fecha}</td>
+                            <td>$${pedido.Total.toFixed(2)}</td>
+                            <td><span class="status-badge ${estadoClass}">${pedido.Estado}</span></td>
+                            <td>
+                                <a href="detalles-pedido.html?id=${pedido.IdPedido}" class="action-btn view-btn">
+                                    <i class="fas fa-eye"></i> Ver
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                });
+            }
+
+            // Inicializar
+            cargarPedidos();
+
+            // Filtros
+            $('#filter-status, #filter-date').change(function() {
+                // Aquí implementarías la lógica de filtrado
+                console.log('Filtrando pedidos...');
+            });
+
+            // Paginación
+            $('#prev-page, #next-page').click(function() {
+                // Aquí implementarías la lógica de paginación
+                console.log('Cambiando página...');
+            });
+        });
+    </script>
+</body>
+</html>

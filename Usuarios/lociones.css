@@ -1,0 +1,50 @@
+/* Estilos base - Se mantienen iguales */
+/* ... (usar los mismos estilos base del anterior) ... */
+
+/* Ajustes específicos para lociones */
+.filters__title {
+    color: #9b59b6; /* Color lila como tema principal */
+}
+
+.filter-btn--active,
+.filter-btn:hover,
+.product-card__btn {
+    background-color: #9b59b6; /* Lila para lociones */
+}
+
+.filter-btn--active:hover,
+.product-card__btn:hover {
+    background-color: #8e44ad; /* Lila más oscuro */
+}
+
+.product-card__price {
+    color: #9b59b6;
+}
+
+/* Ajuste específico para imágenes de lociones */
+.product-card__image {
+    height: 180px;
+    background-color: #f9f0ff; /* Fondo lila claro */
+    padding: 20px;
+    position: relative;
+}
+
+/* Etiqueta de tamaño */
+.product-card__size {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Notas de fragancia */
+.product-card__notes {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    font-style: italic;
+}

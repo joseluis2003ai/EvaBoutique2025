@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="principal.css">
+    <link rel="stylesheet" href="principal2.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>EVE <span>BOUTIQUE</span></h1>
+                <p>Panel de Administración</p>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Principal.html" class="nav-item"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="Agregar.html" class="nav-item active"><i class="fas fa-plus-circle"></i> Agregar Producto</a></li>
+                    <li><a href="pedidos.html" class="nav-item"><i class="fas fa-clipboard-list"></i> Pedidos</a></li>
+                    <li><a href="detallesPedido.html" class="nav-item"><i class="fas fa-warehouse"></i> Detalles</a></li>
+                    
+                    <li><a href="configuracion.html" class="nav-item"><i class="fas fa-cog"></i> Configuración</a></li>
+                </ul>
+            </nav>
+            
+            <div class="weather-info">
+                <div class="temperature">27°C</div>
+                <div class="weather-condition">Mayormente nublado</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h2>Resumen General</h2>
+            </header>
+
+            <!-- Estadísticas Rápidas -->
+            <section class="quick-stats">
+                <div class="stat-card">
+                    <h3>Pedidos Hoy</h3>
+                    <div class="stat-value" id="pedidos-hoy">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Productos</h3>
+                    <div class="stat-value" id="total-productos">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Clientes</h3>
+                    <div class="stat-value" id="total-clientes">0</div>
+                </div>
+            </section>
+
+            <!-- Pedidos Recientes -->
+            <section class="recent-orders">
+                <h3><i class="fas fa-clock"></i> Pedidos Recientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pedidos-recientes">
+                        <!-- Datos se cargarán dinámicamente -->
+                        <tr>
+                            <td colspan="4">No hay pedidos recientes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="principal.js"></script>
+    <script src="Principal2.js"></script>
+</body>
+</html>

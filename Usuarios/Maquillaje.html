@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maquillaje - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        
+        /* Barra de navegación superior */
+        .top-nav {
+            background-color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d63384;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #d63384;
+        }
+        
+        /* Barra de búsqueda y usuario */
+        .search-user {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding: 8px 15px 8px 35px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            width: 200px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+        
+        .user-name {
+            font-weight: 500;
+        }
+        
+        /* Filtros de categoría */
+        .category-filters {
+            background-color: #fff;
+            padding: 15px 30px;
+            margin-top: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #d63384;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #d63384;
+            color: white;
+        }
+        
+        /* Contenido principal */
+        .main-content {
+            padding: 30px;
+        }
+        
+        .search-products {
+            margin-bottom: 20px;
+        }
+        
+        .search-products input {
+            padding: 10px 20px;
+            width: 300px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+        }
+        
+        /* Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            color: #d63384;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 8px;
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #b52b6d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación superior -->
+    <nav class="top-nav">
+        <div class="logo">EVE BOUTIQUE</div>
+        
+        <div class="nav-links">
+            <a href="index.html">INICIO</a>
+            <a href="#" class="active">LO NUEVO</a>
+            <a href="#">CATEGORÍAS</a>
+            <a href="#">AYUDA</a>
+        </div>
+        
+        <div class="search-user">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar maquillaje...">
+            </div>
+            <div class="user-name">Nombre usuario</div>
+        </div>
+    </nav>
+    
+    <!-- Filtros de categoría -->
+    <div class="category-filters">
+        <div class="category-title">Maquillaje</div>
+        <div class="filter-buttons">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Labios</button>
+            <button class="filter-btn">Ojos</button>
+            <button class="filter-btn">Rostro</button>
+            <button class="filter-btn">Accesorios</button>
+        </div>
+    </div>
+    
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="search-products">
+            <input type="text" placeholder="Buscar productos...">
+        </div>
+        
+        <!-- Grid de productos -->
+        <div class="products-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x200?text=Paleta+Sombra" alt="Paleta de sombras">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Paleta de Sombras</div>
+                    <div class="product-price">$1,299</div>
+                    <button class="add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x200?text=Labial+Liquido" alt="Labial líquido">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Labial Líquido</div>
+                    <div class="product-price">$899</div>
+                    <button class="add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x200?text=Base+Maquillaje" alt="Base de maquillaje">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Base de Maquillaje</div>
+                    <div class="product-price">$1,099</div>
+                    <button class="add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/200x200?text=Brochas" alt="Set de brochas">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Set de Brochas</div>
+                    <div class="product-price">$1,799</div>
+                    <button class="add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidad básica de los filtros
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Aquí iría la lógica para filtrar los productos
+            });
+        });
+        
+        // Funcionalidad del carrito
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productName = this.parentElement.querySelector('.product-name').textContent;
+                alert(`${productName} añadido al carrito`);
+            });
+        });
+    </script>
+</body>
+</html>

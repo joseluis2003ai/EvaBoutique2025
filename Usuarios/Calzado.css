@@ -1,0 +1,28 @@
+/* Estilos base - Se mantienen iguales */
+/* ... (usar los mismos estilos base del anterior) ... */
+
+/* Ajustes específicos para calzado */
+.filters__title {
+    color: #8e44ad; /* Cambio de color principal a morado */
+}
+
+.filter-btn--active,
+.filter-btn:hover,
+.product-card__btn {
+    background-color: #8e44ad; /* Morado para calzado */
+}
+
+.filter-btn--active:hover,
+.product-card__btn:hover {
+    background-color: #732d91; /* Morado más oscuro */
+}
+
+.product-card__price {
+    color: #8e44ad;
+}
+
+/* Ajuste específico para imágenes de calzado */
+.product-card__image {
+    height: 220px; /* Más alto para mostrar mejor el calzado */
+    background-color: #faf5ff; /* Fondo morado claro */
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto - EVE BOUTIQUE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="agregar.css">
+    <link rel="stylesheet" href="agregar2.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>EVE <span>BOUTIQUE</span></h1>
+                <p>Panel de Administración</p>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="Principal.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="Agregar.html" class="active"><i class="fas fa-plus-circle"></i> Agregar Producto</a></li>
+                    <li><a href="pedidos.html"><i class="fas fa-clipboard-list"></i> Pedidos</a></li>
+                    <li><a href="detallesPedido.html"><i class="fas fa-warehouse"></i> Detalles</a></li>
+                    
+                    <li><a href="configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+                </ul>
+            </nav>
+            
+            <div class="weather-info">
+                <div class="temperature">27°C</div>
+                <div class="weather-condition">Mayormente nublado</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h2><i class="fas fa-plus-circle"></i> Agregar Nuevo Producto</h2>
+            </header>
+
+            <div class="form-container">
+                <form id="formAgregarProducto" class="product-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-tag"></i> Nombre del Producto</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Vestido de verano floral" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categoria"><i class="fas fa-list"></i> Categoría</label>
+                        <select id="categoria" name="categoria" class="form-select" required>
+                            <option value="">Seleccione una categoría</option>
+                            <option value="ropa">Ropa</option>
+                            <option value="maquillaje">Maquillaje</option>
+                            <option value="calzado">Calzado</option>
+                            <option value="bolsos">Bolsos</option>
+                            <option value="Lociones">Lociones</option>
+                            <option value="skin care">Skin Care</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group price-group">
+                            <label for="precio"><i class="fas fa-dollar-sign"></i> Precio</label>
+                            <div class="input-with-symbol">
+                                <span>$</span>
+                                <input type="number" id="precio" name="precio" step="0.01" min="0" class="price-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group stock-group">
+                            <label for="stock"><i class="fas fa-boxes"></i> Stock Disponible</label>
+                            <input type="number" id="stock" name="stock" min="0" class="stock-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group description-group">
+                        <label for="descripcion"><i class="fas fa-align-left"></i> Descripción</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" class="description-textarea" placeholder="Descripción detallada del producto..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group image-upload-group">
+                        <label for="imagen"><i class="fas fa-image"></i> Imagen del Producto</label>
+                        <div class="file-upload-box">
+                            <input type="file" id="imagen" name="imagen" accept="image/*" class="file-input" required>
+                            <label for="imagen" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span id="nombre-archivo" class="file-name">Seleccionar archivo</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancelar cancel-btn">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn-guardar submit-btn">
+                            <i class="fas fa-save"></i> Guardar Producto
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="agregar.js"></script>
+  
+<script type="module">
+      import { initAddProductForm } from './agregar.js';
+    document.addEventListener('DOMContentLoaded', initAddProductForm);
+    $(document).ready(function() {
+        // Mostrar nombre del archivo seleccionado
+        $('#imagen').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            $('#nombre-archivo').text(fileName);
+        });
+
+        // Enviar formulario
+        $('#formAgregarProducto').submit(function(e) {
+            e.preventDefault();
+            
+            var formData = new FormData(this);
+            
+            $.ajax({
+                url: 'http://localhost:3000/api/gregar', // << Cambia esta URL
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text: 'Producto agregado correctamente',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    $('#formAgregarProducto')[0].reset();
+                    $('#nombre-archivo').text('Seleccionar archivo');
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error al agregar producto: ' + error,
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
+        });
+    });
+    
+</script>

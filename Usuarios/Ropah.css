@@ -1,0 +1,47 @@
+
+
+.filters__title {
+    color: #3498db; /* Azul como color principal */
+}
+
+.filter-btn--active,
+.filter-btn:hover,
+.product-card__btn {
+    background-color: #3498db; /* Azul para ropa hombre */
+}
+
+.filter-btn--active:hover,
+.product-card__btn:hover {
+    background-color: #2980b9; /* Azul más oscuro */
+}
+
+.product-card__price {
+    color: #3498db;
+}
+
+/* Ajuste específico para imágenes de ropa */
+.product-card__image {
+    height: 200px;
+    background-color: #f0f8ff; /* Fondo azul claro */
+    padding: 15px;
+}
+
+/* Etiqueta de talla */
+.product-card__size {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Estilo para tipo de prenda */
+.product-card__type {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
